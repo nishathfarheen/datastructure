@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+int data;
+struct node* next;
+}*newnode, *temp;
+struct node* head=NULL;
+struct node* tail=NULL;
+void create_clist()
+{
+int val;
+int c;
+do
+{
+newnode=(struct node*)malloc(sizeof(struct node));
+printf("enter value");
+scanf("%d",&val);
+newnode->data=val;
+newnode->next=NULL;
+if(head==NULL)
+{
+newnode->next=newnode;
+head=newnode;
+tail=newnode;
+}
+else
+{
+tail->next=newnode;
+newnode->next=head;
+tail=newnode;
+}
+printf("enter 1 to continue 0 to exit");
+scanf("%d",&c);
+}while(c==1);
+}
+void display()
+{
+temp=head;
+while(temp->next!=head)
+{
+printf("%d\n",temp->data);
+temp=temp->next;
+}
+printf("%d",temp->data);
+}
+void insert_beg()
+{
+temp=head;
+int val;
+newnode=(struct node*)malloc(sizeof(struct node)) ;
+printf("enter value to insert at beginning");
+scanf("%d",&val);
+newnode->data=val;
+tail->next=newnode;
+newnode->next=head;
+head=newnode;
+}
+void insert_end()
+{
+int val;
+newnode=(struct node*)malloc(sizeof(struct node)) ;
+printf("enter value to insert at ending");
+scanf("%d",&val);
+newnode->data=val;
+tail->next=newnode;
+newnode->next=head;
+tail=newnode;
+}
+
+void main()
+{
+create_clist() ;
+display() ;
+insert_end() ;
+display() ;
+}
